@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vita.mapper.BookOrderMapper">
+  <resultMap id="BaseResultMap" type="com.vita.entity.BookOrder">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="order_amt" jdbcType="INTEGER" property="orderAmt" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="validity_time" jdbcType="TIMESTAMP" property="validityTime" />
+    <result column="duration" jdbcType="INTEGER" property="duration" />
+    <result column="order_date" jdbcType="DATE" property="orderDate" />
+    <result column="income" jdbcType="INTEGER" property="income" />
+    <result column="m_bath" jdbcType="INTEGER" property="mBath" />
+    <result column="w_bath" jdbcType="INTEGER" property="wBath" />
+    <result column="m_locker" jdbcType="INTEGER" property="mLocker" />
+    <result column="w_locker" jdbcType="INTEGER" property="wLocker" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="auth_phone" jdbcType="CHAR" property="authPhone" />
+    <result column="create_date" jdbcType="DATE" property="createDate" />
+    <result column="create_time" jdbcType="TIME" property="createTime" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="pay_status" jdbcType="CHAR" property="payStatus" />
+    <result column="pay_finish_time" jdbcType="TIMESTAMP" property="payFinishTime" />
+    <result column="pay_channel" jdbcType="CHAR" property="payChannel" />
+    <result column="stadium_id" jdbcType="VARCHAR" property="stadiumId" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="source" jdbcType="CHAR" property="source" />
+    <result column="type" jdbcType="CHAR" property="type" />
+    <result column="order_info" jdbcType="VARCHAR" property="orderInfo" />
+    <result column="income_num" jdbcType="INTEGER" property="incomeNum" />
+    <result column="refund_amt" jdbcType="INTEGER" property="refundAmt" />
+    <result column="resund_status" jdbcType="CHAR" property="resundStatus" />
+    <result column="out_trade_no" jdbcType="VARCHAR" property="outTradeNo" />
+    <result column="out_pay_id" jdbcType="VARCHAR" property="outPayId" />
+    <result column="fail_desc" jdbcType="VARCHAR" property="failDesc" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="short_url" jdbcType="VARCHAR" property="shortUrl" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, order_no, order_amt, count, validity_time, duration, order_date, income, m_bath, 
+    w_bath, m_locker, w_locker, user_id, nick_name, phone, auth_phone, create_date, create_time, 
+    status, pay_status, pay_finish_time, pay_channel, stadium_id, product_id, product_name, 
+    source, type, order_info, income_num, refund_amt, resund_status, out_trade_no, out_pay_id, 
+    fail_desc, version, short_url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_book_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_book_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.vita.entity.BookOrder">
+    insert into t_book_order (id, order_no, order_amt, 
+      count, validity_time, duration, 
+      order_date, income, m_bath, 
+      w_bath, m_locker, w_locker, 
+      user_id, nick_name, phone, 
+      auth_phone, create_date, create_time, 
+      status, pay_status, pay_finish_time, 
+      pay_channel, stadium_id, product_id, 
+      product_name, source, type, 
+      order_info, income_num, refund_amt, 
+      resund_status, out_trade_no, out_pay_id, 
+      fail_desc, version, short_url
+      )
+    values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}, #{orderAmt,jdbcType=INTEGER}, 
+      #{count,jdbcType=INTEGER}, #{validityTime,jdbcType=TIMESTAMP}, #{duration,jdbcType=INTEGER}, 
+      #{orderDate,jdbcType=DATE}, #{income,jdbcType=INTEGER}, #{mBath,jdbcType=INTEGER}, 
+      #{wBath,jdbcType=INTEGER}, #{mLocker,jdbcType=INTEGER}, #{wLocker,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{nickName,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{authPhone,jdbcType=CHAR}, #{createDate,jdbcType=DATE}, #{createTime,jdbcType=TIME}, 
+      #{status,jdbcType=CHAR}, #{payStatus,jdbcType=CHAR}, #{payFinishTime,jdbcType=TIMESTAMP}, 
+      #{payChannel,jdbcType=CHAR}, #{stadiumId,jdbcType=VARCHAR}, #{productId,jdbcType=INTEGER}, 
+      #{productName,jdbcType=VARCHAR}, #{source,jdbcType=CHAR}, #{type,jdbcType=CHAR}, 
+      #{orderInfo,jdbcType=VARCHAR}, #{incomeNum,jdbcType=INTEGER}, #{refundAmt,jdbcType=INTEGER}, 
+      #{resundStatus,jdbcType=CHAR}, #{outTradeNo,jdbcType=VARCHAR}, #{outPayId,jdbcType=VARCHAR}, 
+      #{failDesc,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, #{shortUrl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.vita.entity.BookOrder">
+    insert into t_book_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="orderAmt != null">
+        order_amt,
+      </if>
+      <if test="count != null">
+        count,
+      </if>
+      <if test="validityTime != null">
+        validity_time,
+      </if>
+      <if test="duration != null">
+        duration,
+      </if>
+      <if test="orderDate != null">
+        order_date,
+      </if>
+      <if test="income != null">
+        income,
+      </if>
+      <if test="mBath != null">
+        m_bath,
+      </if>
+      <if test="wBath != null">
+        w_bath,
+      </if>
+      <if test="mLocker != null">
+        m_locker,
+      </if>
+      <if test="wLocker != null">
+        w_locker,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="authPhone != null">
+        auth_phone,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="payStatus != null">
+        pay_status,
+      </if>
+      <if test="payFinishTime != null">
+        pay_finish_time,
+      </if>
+      <if test="payChannel != null">
+        pay_channel,
+      </if>
+      <if test="stadiumId != null">
+        stadium_id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="productName != null">
+        product_name,
+      </if>
+      <if test="source != null">
+        source,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="orderInfo != null">
+        order_info,
+      </if>
+      <if test="incomeNum != null">
+        income_num,
+      </if>
+      <if test="refundAmt != null">
+        refund_amt,
+      </if>
+      <if test="resundStatus != null">
+        resund_status,
+      </if>
+      <if test="outTradeNo != null">
+        out_trade_no,
+      </if>
+      <if test="outPayId != null">
+        out_pay_id,
+      </if>
+      <if test="failDesc != null">
+        fail_desc,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="shortUrl != null">
+        short_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAmt != null">
+        #{orderAmt,jdbcType=INTEGER},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="validityTime != null">
+        #{validityTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="duration != null">
+        #{duration,jdbcType=INTEGER},
+      </if>
+      <if test="orderDate != null">
+        #{orderDate,jdbcType=DATE},
+      </if>
+      <if test="income != null">
+        #{income,jdbcType=INTEGER},
+      </if>
+      <if test="mBath != null">
+        #{mBath,jdbcType=INTEGER},
+      </if>
+      <if test="wBath != null">
+        #{wBath,jdbcType=INTEGER},
+      </if>
+      <if test="mLocker != null">
+        #{mLocker,jdbcType=INTEGER},
+      </if>
+      <if test="wLocker != null">
+        #{wLocker,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="authPhone != null">
+        #{authPhone,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIME},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="payStatus != null">
+        #{payStatus,jdbcType=CHAR},
+      </if>
+      <if test="payFinishTime != null">
+        #{payFinishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payChannel != null">
+        #{payChannel,jdbcType=CHAR},
+      </if>
+      <if test="stadiumId != null">
+        #{stadiumId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=CHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="orderInfo != null">
+        #{orderInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeNum != null">
+        #{incomeNum,jdbcType=INTEGER},
+      </if>
+      <if test="refundAmt != null">
+        #{refundAmt,jdbcType=INTEGER},
+      </if>
+      <if test="resundStatus != null">
+        #{resundStatus,jdbcType=CHAR},
+      </if>
+      <if test="outTradeNo != null">
+        #{outTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="outPayId != null">
+        #{outPayId,jdbcType=VARCHAR},
+      </if>
+      <if test="failDesc != null">
+        #{failDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="shortUrl != null">
+        #{shortUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vita.entity.BookOrder">
+    update t_book_order
+    <set>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAmt != null">
+        order_amt = #{orderAmt,jdbcType=INTEGER},
+      </if>
+      <if test="count != null">
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="validityTime != null">
+        validity_time = #{validityTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="duration != null">
+        duration = #{duration,jdbcType=INTEGER},
+      </if>
+      <if test="orderDate != null">
+        order_date = #{orderDate,jdbcType=DATE},
+      </if>
+      <if test="income != null">
+        income = #{income,jdbcType=INTEGER},
+      </if>
+      <if test="mBath != null">
+        m_bath = #{mBath,jdbcType=INTEGER},
+      </if>
+      <if test="wBath != null">
+        w_bath = #{wBath,jdbcType=INTEGER},
+      </if>
+      <if test="mLocker != null">
+        m_locker = #{mLocker,jdbcType=INTEGER},
+      </if>
+      <if test="wLocker != null">
+        w_locker = #{wLocker,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="authPhone != null">
+        auth_phone = #{authPhone,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIME},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="payStatus != null">
+        pay_status = #{payStatus,jdbcType=CHAR},
+      </if>
+      <if test="payFinishTime != null">
+        pay_finish_time = #{payFinishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payChannel != null">
+        pay_channel = #{payChannel,jdbcType=CHAR},
+      </if>
+      <if test="stadiumId != null">
+        stadium_id = #{stadiumId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null">
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        source = #{source,jdbcType=CHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=CHAR},
+      </if>
+      <if test="orderInfo != null">
+        order_info = #{orderInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeNum != null">
+        income_num = #{incomeNum,jdbcType=INTEGER},
+      </if>
+      <if test="refundAmt != null">
+        refund_amt = #{refundAmt,jdbcType=INTEGER},
+      </if>
+      <if test="resundStatus != null">
+        resund_status = #{resundStatus,jdbcType=CHAR},
+      </if>
+      <if test="outTradeNo != null">
+        out_trade_no = #{outTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="outPayId != null">
+        out_pay_id = #{outPayId,jdbcType=VARCHAR},
+      </if>
+      <if test="failDesc != null">
+        fail_desc = #{failDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="shortUrl != null">
+        short_url = #{shortUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vita.entity.BookOrder">
+    update t_book_order
+    set order_no = #{orderNo,jdbcType=VARCHAR},
+      order_amt = #{orderAmt,jdbcType=INTEGER},
+      count = #{count,jdbcType=INTEGER},
+      validity_time = #{validityTime,jdbcType=TIMESTAMP},
+      duration = #{duration,jdbcType=INTEGER},
+      order_date = #{orderDate,jdbcType=DATE},
+      income = #{income,jdbcType=INTEGER},
+      m_bath = #{mBath,jdbcType=INTEGER},
+      w_bath = #{wBath,jdbcType=INTEGER},
+      m_locker = #{mLocker,jdbcType=INTEGER},
+      w_locker = #{wLocker,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      auth_phone = #{authPhone,jdbcType=CHAR},
+      create_date = #{createDate,jdbcType=DATE},
+      create_time = #{createTime,jdbcType=TIME},
+      status = #{status,jdbcType=CHAR},
+      pay_status = #{payStatus,jdbcType=CHAR},
+      pay_finish_time = #{payFinishTime,jdbcType=TIMESTAMP},
+      pay_channel = #{payChannel,jdbcType=CHAR},
+      stadium_id = #{stadiumId,jdbcType=VARCHAR},
+      product_id = #{productId,jdbcType=INTEGER},
+      product_name = #{productName,jdbcType=VARCHAR},
+      source = #{source,jdbcType=CHAR},
+      type = #{type,jdbcType=CHAR},
+      order_info = #{orderInfo,jdbcType=VARCHAR},
+      income_num = #{incomeNum,jdbcType=INTEGER},
+      refund_amt = #{refundAmt,jdbcType=INTEGER},
+      resund_status = #{resundStatus,jdbcType=CHAR},
+      out_trade_no = #{outTradeNo,jdbcType=VARCHAR},
+      out_pay_id = #{outPayId,jdbcType=VARCHAR},
+      fail_desc = #{failDesc,jdbcType=VARCHAR},
+      version = #{version,jdbcType=INTEGER},
+      short_url = #{shortUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vita.mymapper.PointsCustomMapper">
+
+    <select id="orderList" parameterType="com.vita.model.OrderListVo"
+            resultType="com.vita.mapper.BookOrderMapper.BaseResultMap">
+        SELECT
+          id,order_no,nick_name,status,create_date,create_time,order_amt,pay_channel,phone
+        FROM
+          t_book_order
+        WHERE
+          1=1
+        <if test="userName != null and userName != ''">
+            AND nick_name like CONCAT('%', #{userName} , '%')
+        </if>
+        <if test="orderNo != null and orderNo != ''">
+            AND order_no = #{orderNo}
+        </if>
+        <if test="endDate != null and endDate != ''">
+            <![CDATA[ AND create_date <= #{endDate} ]]>
+        </if>
+        <if test="startDate != null and startDate != ''">
+            <![CDATA[ AND create_date >= #{startDate} ]]>
+        </if>
+    </select>
+
+</mapper>

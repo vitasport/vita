@@ -1,0 +1,54 @@
+server:
+  port: 4005
+  max-http-header-size: 100000
+spring:
+  profiles:
+    active: pro
+
+---
+spring:
+  profiles: dev
+  datasource:
+    druid:
+      name: springboots
+      url: jdbc:mysql://116.62.143.18:3306/caiao?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+      username: websvr
+      password: ^c5JzmY*at
+      driver-class-name: com.mysql.jdbc.Driver
+      filters: stat
+      maxActive: 20
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 1
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      
+---
+ spring:
+  profiles: pro
+  datasource:
+    druid:
+      name: springboots
+      url: jdbc:mysql://116.62.143.18:3306/caiao?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      username: websvr
+      password: ^c5JzmY*at
+      driver-class-name: com.mysql.jdbc.Driver
+      filters: stat
+      maxActive: 20
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 1
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20

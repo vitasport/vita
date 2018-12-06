@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vita.mapper.StockMapper">
+  <resultMap id="BaseResultMap" type="com.vita.entity.Stock">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="ground_id" jdbcType="INTEGER" property="groundId" />
+    <result column="ground_name" jdbcType="VARCHAR" property="groundName" />
+    <result column="date" jdbcType="DATE" property="date" />
+    <result column="start_time" jdbcType="TIME" property="startTime" />
+    <result column="end_time" jdbcType="TIME" property="endTime" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, ground_id, ground_name, date, start_time, end_time, price, status, version
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from p_stock
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from p_stock
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.vita.entity.Stock">
+    insert into p_stock (id, ground_id, ground_name, 
+      date, start_time, end_time, price, 
+      status, version)
+    values (#{id,jdbcType=INTEGER}, #{groundId,jdbcType=INTEGER}, #{groundName,jdbcType=VARCHAR}, 
+      #{date,jdbcType=DATE}, #{startTime,jdbcType=TIME}, #{endTime,jdbcType=TIME}, #{price,jdbcType=INTEGER}, 
+      #{status,jdbcType=CHAR}, #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.vita.entity.Stock">
+    insert into p_stock
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="groundId != null">
+        ground_id,
+      </if>
+      <if test="groundName != null">
+        ground_name,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="groundId != null">
+        #{groundId,jdbcType=INTEGER},
+      </if>
+      <if test="groundName != null">
+        #{groundName,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIME},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIME},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vita.entity.Stock">
+    update p_stock
+    <set>
+      <if test="groundId != null">
+        ground_id = #{groundId,jdbcType=INTEGER},
+      </if>
+      <if test="groundName != null">
+        ground_name = #{groundName,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        date = #{date,jdbcType=DATE},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIME},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIME},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vita.entity.Stock">
+    update p_stock
+    set ground_id = #{groundId,jdbcType=INTEGER},
+      ground_name = #{groundName,jdbcType=VARCHAR},
+      date = #{date,jdbcType=DATE},
+      start_time = #{startTime,jdbcType=TIME},
+      end_time = #{endTime,jdbcType=TIME},
+      price = #{price,jdbcType=INTEGER},
+      status = #{status,jdbcType=CHAR},
+      version = #{version,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
