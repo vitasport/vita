@@ -2,7 +2,7 @@ spring:
   application:
     name: vita-service
   profiles:
-    active: pro
+    active: dev
 
 
 ---

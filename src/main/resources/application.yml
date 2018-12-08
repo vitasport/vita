@@ -1,9 +1,9 @@
 server:
-  port: 4005
+  port: 8000
   max-http-header-size: 100000
 spring:
   profiles:
-    active: pro
+    active: dev
 
 ---
 spring:
@@ -11,9 +11,9 @@ spring:
   datasource:
     druid:
       name: springboots
-      url: jdbc:mysql://116.62.143.18:3306/caiao?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
-      username: websvr
-      password: ^c5JzmY*at
+      url: jdbc:mysql://116.62.143.18:3306/caiao?characterEncoding=utf8
+      username: root
+      password: I^9ggI*zrTRrt%9C
       driver-class-name: com.mysql.jdbc.Driver
       filters: stat
       maxActive: 20
@@ -35,7 +35,7 @@ spring:
   datasource:
     druid:
       name: springboots
-      url: jdbc:mysql://116.62.143.18:3306/caiao?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      url: jdbc:mysql://116.62.143.18:3306/caiao?characterEncoding=utf8
       username: websvr
       password: ^c5JzmY*at
       driver-class-name: com.mysql.jdbc.Driver

@@ -2,6 +2,8 @@ package com.vita.entity;
 
 import lombok.Data;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Data
@@ -12,11 +14,11 @@ public class Stock {
 
     private String groundName;
 
-    private Date date;
+    private LocalDate date;
 
-    private Date startTime;
+    private LocalTime startTime;
 
-    private Date endTime;
+    private LocalTime endTime;
 
     private Integer price;
 

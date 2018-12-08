@@ -11,9 +11,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @SpringBootApplication
 @EnableDiscoveryClient
-public class HxPointsServiceApplication {
+public class VitaServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HxPointsServiceApplication.class, args);
+		SpringApplication.run(VitaServiceApplication.class, args);
 	}
 }

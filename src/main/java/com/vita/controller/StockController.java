@@ -1,22 +1,17 @@
 package com.vita.controller;/**
- * Created by tawift on 2018/12/6.
+ * Created by tawift on 2018/12/7.
  */
 
-import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
-import com.vita.entity.BookOrder;
+import com.vita.entity.Stock;
 import com.vita.model.JSONResult;
-import com.vita.model.OrderListVo;
-import com.vita.model.OrderVo;
-import com.vita.service.OrderService;
+import com.vita.model.StockVo;
+import com.vita.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import java.util.List;
 
 /**
  * code is far away from bug with the animal protecting
@@ -41,36 +36,22 @@ import javax.validation.Valid;
  * @Description :
  * ---------------------------------
  * @Author : tawift
- * @Date : Create in 2018/12/6 09:53
+ * @Date : Create in 2018/12/7 13:41
  */
-
 @RestController
-@RequestMapping("order")
-public class OrderController {
+@RequestMapping("stock")
+public class StockController {
 
     @Autowired
-    OrderService orderService;
-
-
-    /**
-     *
-     * @param vo
-     * @param br
-     * @return
-     */
-    @RequestMapping(value = "list", method = {RequestMethod.GET})
-    public JSONResult<PageInfo<BookOrder>> orderList(@RequestBody @Valid OrderListVo vo, BindingResult br) {
-        return orderService.list(vo);
-    }
+    StockService stockService;
 
     /**
-     * 订单详情
+     * 库存查询
      * @param vo
-     * @param br
      * @return
      */
-    @RequestMapping(value = "detail", method = {RequestMethod.GET})
-    public JSONResult<BookOrder> detail(@Valid OrderVo vo, BindingResult br) {
-        return orderService.detail(vo);
+    @RequestMapping("list")
+    public JSONResult<List<Stock>> list(StockVo vo){
+        return stockService.list(vo);
     }
 }

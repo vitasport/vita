@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.vita.mymapper.PointsCustomMapper">
+<mapper namespace="com.vita.mymapper.CustomOrderMapper">
 
     <select id="orderList" parameterType="com.vita.model.OrderListVo"
-            resultType="com.vita.mapper.BookOrderMapper.BaseResultMap">
+            resultMap="com.vita.mapper.BookOrderMapper.BaseResultMap">
         SELECT
           id,order_no,nick_name,status,create_date,create_time,order_amt,pay_channel,phone
         FROM
@@ -21,6 +21,24 @@
         </if>
         <if test="startDate != null and startDate != ''">
             <![CDATA[ AND create_date >= #{startDate} ]]>
+        </if>
+    </select>
+
+    <select id="stockList" parameterType="com.vita.model.StockVo" resultMap="com.vita.mapper.StockMapper.BaseResultMap">
+        SELECT
+          id, ground_id, ground_name, `date`, start_time, end_time, price, status, version
+        FROM
+          p_stock
+        WHERE
+          1=1
+        <if test="groundName != null and  groundName != ''">
+            AND ground_name LIKE CONCAT('%',#{groundName}, '%')
+        </if>
+        <if test="date != null and date != ''">
+            AND `data` = #{date}
+        </if>
+        <if test="sportKey != null and sportKey != ''">
+            AND sport_key #{sportKey}
         </if>
     </select>
 

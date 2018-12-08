@@ -1,20 +1,21 @@
 package com.vita.service;/**
- * Created by tawift on 2018/12/6.
+ * Created by tawift on 2018/12/7.
  */
 
-import com.alibaba.fastjson.JSONObject;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.vita.entity.BookOrder;
-import com.vita.mapper.BookOrderMapper;
+import com.vita.entity.Stock;
 import com.vita.model.JSONResult;
-import com.vita.model.OrderListVo;
-import com.vita.model.OrderVo;
+import com.vita.model.StockVo;
 import com.vita.mymapper.CustomOrderMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * code is far away from bug with the animal protecting
@@ -39,35 +40,24 @@ import java.util.List;
  * @Description :
  * ---------------------------------
  * @Author : tawift
- * @Date : Create in 2018/12/6 09:57
+ * @Date : Create in 2018/12/7 14:09
  */
+@Slf4j
 @Service
-public class OrderService {
-
-    @Autowired
-    BookOrderMapper bookOrderMapper;
+public class StockService {
 
     @Autowired
     CustomOrderMapper customOrderMapper;
 
 
     /**
-     * 订单管理列表查询
+     * 库存查询
      * @param vo
      * @return
      */
-    public JSONResult<PageInfo<BookOrder>> list(OrderListVo vo) {
-        PageHelper.startPage(vo.getPage(),vo.getLimit());
-        List<BookOrder> list = customOrderMapper.orderList(vo);
-        return new JSONResult<>(new PageInfo<>(list));
-    }
-
-    /**
-     * 订单详情
-     * @return
-     */
-    public JSONResult<BookOrder> detail(OrderVo vo){
-        BookOrder order = bookOrderMapper.selectByPrimaryKey(vo.getOrderId());
-        return new JSONResult<>(order);
+    public JSONResult<List<Stock>> list(StockVo vo) {
+        List<Stock> list = customOrderMapper.stockList(vo);
+//        Map<LocalDate,List<Stock>> map = list.stream().collect(Collectors.groupingBy(Stock::getDate));
+        return new JSONResult<>(list);
     }
 }
