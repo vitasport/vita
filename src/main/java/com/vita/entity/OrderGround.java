@@ -5,18 +5,28 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
+import java.util.List;
 
 @Data
-public class Stock {
+public class OrderGround {
     private Integer id;
 
-    private Integer groundId;
+    private Integer orderId;
+
+    private String orderNo;
+
+    private Integer productId;
+
+    private String productName;
+
+    private String groundId;
 
     private String groundName;
 
+    private String orderStatus;
+
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate date;
+    private LocalDate orderDate;
 
     @JsonFormat(pattern = "HH:mm")
     private LocalTime startTime;
@@ -24,10 +34,5 @@ public class Stock {
     @JsonFormat(pattern = "HH:mm")
     private LocalTime endTime;
 
-    private Integer price;
-
-    private String status;
-
-    private Integer version;
-
+    private List<Stock> stocks;
 }

@@ -58,7 +58,7 @@ public class OrderController {
      * @param br
      * @return
      */
-    @RequestMapping(value = "list", method = {RequestMethod.GET})
+    @RequestMapping(value = "list", method = {RequestMethod.POST})
     public JSONResult<PageInfo<BookOrder>> orderList(@RequestBody @Valid OrderListVo vo, BindingResult br) {
         return orderService.list(vo);
     }
