@@ -2,6 +2,10 @@ package com.vita.config;/**
  * Created by tawift on 2018/11/21.
  */
 
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
 /**
  * code is far away from bug with the animal protecting
  * ┏┓　　　┏┓
@@ -27,9 +31,10 @@ package com.vita.config;/**
  * @Author : tawift
  * @Date : Create in 2018/11/21 18:45
  */
-public class Config {
+//@Configuration
+public class Config extends WebMvcConfigurerAdapter {
 
-//    @Bean(name = "mapperObject")
+    //    @Bean(name = "mapperObject")
 //    public ObjectMapper getObjectMapper() {
 //        ObjectMapper om = new ObjectMapper();
 //        Module module = new JsonComponentModule();
@@ -39,4 +44,11 @@ public class Config {
 //        om.registerModule(module);
 //        return om;
 //    }
+    static final String ORIGINS[] = new String[]{"GET", "POST", "PUT", "DELETE", "OPTIONS"};
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**").allowedOrigins("*").allowCredentials(true).allowedMethods(ORIGINS)
+                .maxAge(3600);
+    }
 }

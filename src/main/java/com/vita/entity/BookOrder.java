@@ -1,7 +1,11 @@
 package com.vita.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Data
@@ -12,13 +16,10 @@ public class BookOrder {
 
     private Integer orderAmt;
 
-    private Integer count;
-
-    private Date validityTime;
-
     private Integer duration;
 
-    private Date orderDate;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate orderDate;
 
     private Integer income;
 
@@ -36,23 +37,15 @@ public class BookOrder {
 
     private String phone;
 
-    private String authPhone;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate createDate;
 
-    private Date createDate;
-
-    private Date createTime;
+    @JsonFormat(pattern = "HH:mm:ss")
+    private LocalTime createTime;
 
     private String status;
 
-    private String payStatus;
-
-    private Date payFinishTime;
-
     private String payChannel;
-
-    private String stadiumId;
-
-    private Integer productId;
 
     private String productName;
 
@@ -66,7 +59,7 @@ public class BookOrder {
 
     private Integer refundAmt;
 
-    private String resundStatus;
+    private String refundStatus;
 
     private String outTradeNo;
 
@@ -76,6 +69,6 @@ public class BookOrder {
 
     private Integer version;
 
-    private String shortUrl;
+    private OrderGround ground;
 
 }

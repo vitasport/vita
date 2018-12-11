@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.vita.mymapper.CustomOrderMapper">
+    
+    
+    <resultMap id="order_detail_map" type="com.vita.entity.BookOrder" extends="com.vita.mapper.BookOrderMapper.BaseResultMap">
+        <!--<collection property="equitySet" column="card_code" select="selectCardEquityByCardCode"></collection>-->
+        <association property="ground" select="selectOrderGround" column="id"></association>
+    </resultMap>
 
     <select id="orderList" parameterType="com.vita.model.OrderListVo"
-            resultMap="com.vita.mapper.BookOrderMapper.BaseResultMap">
+            resultMap="order_detail_map">
         SELECT
           id,order_no,nick_name,status,create_date,create_time,order_amt,pay_channel,phone
         FROM
@@ -22,6 +28,17 @@
         <if test="startDate != null and startDate != ''">
             <![CDATA[ AND create_date >= #{startDate} ]]>
         </if>
+        ORDER  BY id DESC
+    </select>
+
+    <select id="selectOrderGround" resultMap="com.vita.mapper.OrderGroundMapper.BaseResultMap" parameterType="int">
+        SELECT
+          id, order_id, order_no, product_id, product_name, ground_id, ground_name, order_status,
+          order_date, start_time, end_time
+        FROM
+          t_book_order_ground
+        WHERE
+          order_id = #{id}
     </select>
 
     <select id="stockList" parameterType="com.vita.model.StockVo" resultMap="com.vita.mapper.StockMapper.BaseResultMap">
@@ -35,10 +52,10 @@
             AND ground_name LIKE CONCAT('%',#{groundName}, '%')
         </if>
         <if test="date != null and date != ''">
-            AND `data` = #{date}
+            AND `date` = #{date}
         </if>
         <if test="sportKey != null and sportKey != ''">
-            AND sport_key #{sportKey}
+            AND sport_key = #{sportKey}
         </if>
     </select>
 

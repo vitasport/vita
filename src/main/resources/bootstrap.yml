@@ -1,6 +1,6 @@
 spring:
   application:
-    name: vita-service
+    name: vita-service-yj
   profiles:
     active: dev
 
@@ -15,7 +15,7 @@ eureka:
     lease-expiration-duration-in-seconds: 20
   client:
     serviceUrl:
-      defaultZone: http://116.62.79.196:1025/eureka
+      defaultZone: http://192.168.1.206:1025/eureka
     registry-fetch-interval-seconds: 10
 
 
