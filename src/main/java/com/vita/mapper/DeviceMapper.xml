@@ -18,6 +18,19 @@
     from p_device
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="selectDeviceByCondition" parameterType="com.vita.entity.Device" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from p_device
+    where (1=1)
+    <if test="device != null and device.name != null and ''!= device.name">
+      AND t.name like #{device.name}
+    </if>
+  </select>
+
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from p_device
     where id = #{id,jdbcType=INTEGER}

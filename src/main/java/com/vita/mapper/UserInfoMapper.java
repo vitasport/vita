@@ -3,6 +3,8 @@ package com.vita.mapper;
 import com.vita.entity.UserInfo;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface UserInfoMapper {
     int deleteByPrimaryKey(Integer id);
@@ -16,4 +18,6 @@ public interface UserInfoMapper {
     int updateByPrimaryKeySelective(UserInfo record);
 
     int updateByPrimaryKey(UserInfo record);
+
+    List<UserInfo> selectUserInfoByCondition(UserInfo userInfo);
 }

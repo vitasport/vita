@@ -23,6 +23,13 @@
     from p_ground
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectGroundByCondition" parameterType="com.vita.entity.Ground" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from p_ground
+    where (1=1)
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from p_ground
     where id = #{id,jdbcType=INTEGER}
