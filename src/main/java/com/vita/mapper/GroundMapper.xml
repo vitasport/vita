@@ -12,10 +12,11 @@
     <result column="virtual_ids" jdbcType="VARCHAR" property="virtualIds" />
     <result column="light_device_id" jdbcType="INTEGER" property="lightDeviceId" />
     <result column="light_item_id" jdbcType="VARCHAR" property="lightItemId" />
+    <result column="sport_key" jdbcType="VARCHAR" property="sportKey" />
   </resultMap>
   <sql id="Base_Column_List">
     id, ground_id, name, price, discription, product_id, rights, virtual_ids, light_device_id, 
-    light_item_id
+    light_item_id,sport_key
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 

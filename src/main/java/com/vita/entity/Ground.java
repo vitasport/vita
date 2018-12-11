@@ -24,4 +24,6 @@ public class Ground {
 
     private String lightItemId;
 
+    private String sportKey;
+
 }
