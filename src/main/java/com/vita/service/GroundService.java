@@ -2,6 +2,7 @@ package com.vita.service;/**
  * Created by tawift on 2018/12/6.
  */
 
+import com.vita.entity.Device;
 import com.vita.entity.Ground;
 import com.vita.entity.UserInfo;
 import com.vita.mapper.GroundMapper;
@@ -50,4 +51,20 @@ public class GroundService {
         return list;
     }
 
+
+    public int insert(Ground record)
+    {
+        return groundMapper.insert(record);
+    }
+
+
+    public int deleteByPrimaryKey(Integer id)
+    {
+        return groundMapper.deleteByPrimaryKey(id);
+    }
+
+    public int updateByPrimaryKey(Ground record)
+    {
+        return groundMapper.updateByPrimaryKey(record);
+    }
 }

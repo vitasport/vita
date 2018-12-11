@@ -52,6 +52,15 @@
     from t_book_order
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="findSuccessOrderByPage" parameterType="com.vita.entity.BookOrder" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_book_order
+    where (1=1)
+    AND user_id=#{order.userId}
+    AND (state='02' or state='03' or state='04')
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_book_order
     where id = #{id,jdbcType=INTEGER}

@@ -70,4 +70,9 @@ public class OrderService {
         BookOrder order = bookOrderMapper.selectByPrimaryKey(vo.getOrderId());
         return new JSONResult<>(order);
     }
+
+    public List<BookOrder> findSuccessOrderByPage(BookOrder order)
+    {
+        return bookOrderMapper.findSuccessOrderByPage(order);
+    }
 }

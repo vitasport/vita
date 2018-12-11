@@ -4,6 +4,7 @@ package com.vita.controller;/**
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.vita.entity.Device;
 import com.vita.entity.Ground;
 import com.vita.entity.UserInfo;
 import com.vita.model.JSONResult;
@@ -67,4 +68,42 @@ public class GroundController {
         return rst;
     }
 
+
+    /**
+     * 添加场地
+     * @param
+     * @return
+     */
+    @RequestMapping(value = "addGround", method = { RequestMethod.POST})
+    public JSONResult<String> addGround(Ground ground) {
+
+        groundService.insert(ground);
+
+        return new JSONResult<>();
+    }
+
+    /**
+     * 更新场地
+     * @param
+     * @return
+     */
+    @RequestMapping(value = "updateGround", method = { RequestMethod.POST})
+    public JSONResult<String> updateGround(Ground ground) {
+
+        groundService.updateByPrimaryKey(ground);
+
+        return new JSONResult<>();
+    }
+
+    /**
+     * 删除场地
+     * @return
+     */
+    @RequestMapping(value = "deleteGround", method = { RequestMethod.POST})
+    public JSONResult<String> deleteGround(String id) {
+
+        groundService.deleteByPrimaryKey(Integer.parseInt(id));
+
+        return new JSONResult<>();
+    }
 }
