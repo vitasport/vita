@@ -32,7 +32,7 @@
     <result column="order_info" jdbcType="VARCHAR" property="orderInfo" />
     <result column="income_num" jdbcType="INTEGER" property="incomeNum" />
     <result column="refund_amt" jdbcType="INTEGER" property="refundAmt" />
-    <result column="resund_status" jdbcType="CHAR" property="resundStatus" />
+    <result column="refund_status" jdbcType="CHAR" property="refundStatus" />
     <result column="out_trade_no" jdbcType="VARCHAR" property="outTradeNo" />
     <result column="out_pay_id" jdbcType="VARCHAR" property="outPayId" />
     <result column="fail_desc" jdbcType="VARCHAR" property="failDesc" />
@@ -43,7 +43,7 @@
     id, order_no, order_amt, count, validity_time, duration, order_date, income, m_bath, 
     w_bath, m_locker, w_locker, user_id, nick_name, phone, auth_phone, create_date, create_time, 
     status, pay_status, pay_finish_time, pay_channel, stadium_id, product_id, product_name, 
-    source, type, order_info, income_num, refund_amt, resund_status, out_trade_no, out_pay_id, 
+    source, type, order_info, income_num, refund_amt, refund_status, out_trade_no, out_pay_id, 
     fail_desc, version, short_url
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -58,7 +58,7 @@
     from t_book_order
     where (1=1)
     AND user_id=#{order.userId}
-    AND (state='02' or state='03' or state='04')
+    AND (status='02' or status='03' or status='04')
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -76,7 +76,7 @@
       pay_channel, stadium_id, product_id, 
       product_name, source, type, 
       order_info, income_num, refund_amt, 
-      resund_status, out_trade_no, out_pay_id, 
+      refund_status, out_trade_no, out_pay_id, 
       fail_desc, version, short_url
       )
     values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}, #{orderAmt,jdbcType=INTEGER}, 
@@ -89,7 +89,7 @@
       #{payChannel,jdbcType=CHAR}, #{stadiumId,jdbcType=VARCHAR}, #{productId,jdbcType=INTEGER}, 
       #{productName,jdbcType=VARCHAR}, #{source,jdbcType=CHAR}, #{type,jdbcType=CHAR}, 
       #{orderInfo,jdbcType=VARCHAR}, #{incomeNum,jdbcType=INTEGER}, #{refundAmt,jdbcType=INTEGER}, 
-      #{resundStatus,jdbcType=CHAR}, #{outTradeNo,jdbcType=VARCHAR}, #{outPayId,jdbcType=VARCHAR}, 
+      #{refundStatus,jdbcType=CHAR}, #{outTradeNo,jdbcType=VARCHAR}, #{outPayId,jdbcType=VARCHAR}, 
       #{failDesc,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, #{shortUrl,jdbcType=VARCHAR}
       )
   </insert>
@@ -186,8 +186,8 @@
       <if test="refundAmt != null">
         refund_amt,
       </if>
-      <if test="resundStatus != null">
-        resund_status,
+      <if test="refundStatus != null">
+        refund_status,
       </if>
       <if test="outTradeNo != null">
         out_trade_no,
@@ -296,8 +296,8 @@
       <if test="refundAmt != null">
         #{refundAmt,jdbcType=INTEGER},
       </if>
-      <if test="resundStatus != null">
-        #{resundStatus,jdbcType=CHAR},
+      <if test="refundStatus != null">
+        #{refundStatus,jdbcType=CHAR},
       </if>
       <if test="outTradeNo != null">
         #{outTradeNo,jdbcType=VARCHAR},
@@ -406,8 +406,8 @@
       <if test="refundAmt != null">
         refund_amt = #{refundAmt,jdbcType=INTEGER},
       </if>
-      <if test="resundStatus != null">
-        resund_status = #{resundStatus,jdbcType=CHAR},
+      <if test="refundStatus != null">
+        refund_status = #{refundStatus,jdbcType=CHAR},
       </if>
       <if test="outTradeNo != null">
         out_trade_no = #{outTradeNo,jdbcType=VARCHAR},
@@ -458,7 +458,7 @@
       order_info = #{orderInfo,jdbcType=VARCHAR},
       income_num = #{incomeNum,jdbcType=INTEGER},
       refund_amt = #{refundAmt,jdbcType=INTEGER},
-      resund_status = #{resundStatus,jdbcType=CHAR},
+      refund_status = #{refundStatus,jdbcType=CHAR},
       out_trade_no = #{outTradeNo,jdbcType=VARCHAR},
       out_pay_id = #{outPayId,jdbcType=VARCHAR},
       fail_desc = #{failDesc,jdbcType=VARCHAR},

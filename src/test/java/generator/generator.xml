@@ -4,7 +4,7 @@
 <generatorConfiguration>
     <!--数据库驱动 -->
     <classPathEntry
-            location="/Users/tawift/.m2/repository/mysql/mysql-connector-java/5.1.39/mysql-connector-java-5.1.39.jar"/>
+            location="C:\Users\colin\eclipse-workspace123\xinbox\WebContent\WEB-INF\lib\mysql-connector-java-5.1.10-bin.jar"/>
     <!-- <classPathEntry location="/Users/tawift/Downloads/ojdbc6.jar" /> -->
     <context id="MySQLTables" targetRuntime="MyBatis3">
         <commentGenerator>
@@ -56,6 +56,10 @@
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false"></table>
         <table tableName="p_stock" domainObjectName="Stock"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"></table>
+        <table tableName="p_master" domainObjectName="Master"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false"></table>
