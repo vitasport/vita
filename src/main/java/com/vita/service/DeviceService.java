@@ -62,7 +62,6 @@ public class DeviceService {
         return deviceMapper.insert(record);
     }
 
-
     public int deleteByPrimaryKey(Integer id)
     {
         return deviceMapper.deleteByPrimaryKey(id);

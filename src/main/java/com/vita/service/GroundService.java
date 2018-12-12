@@ -63,8 +63,8 @@ public class GroundService {
         return groundMapper.deleteByPrimaryKey(id);
     }
 
-    public int updateByPrimaryKey(Ground record)
+    public int updateByPrimaryKeySelective(Ground record)
     {
-        return groundMapper.updateByPrimaryKey(record);
+        return groundMapper.updateByPrimaryKeySelective(record);
     }
 }

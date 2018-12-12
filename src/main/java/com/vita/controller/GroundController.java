@@ -90,7 +90,7 @@ public class GroundController {
     @RequestMapping(value = "updateGround", method = { RequestMethod.POST})
     public JSONResult<String> updateGround(Ground ground) {
 
-        groundService.updateByPrimaryKey(ground);
+        groundService.updateByPrimaryKeySelective(ground);
 
         return new JSONResult<>();
     }
