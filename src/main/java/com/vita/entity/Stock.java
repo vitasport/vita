@@ -30,4 +30,12 @@ public class Stock {
 
     private Integer version;
 
+    private Integer orderId;
+
+    private String sportKey;
+
+    private String operId;
+
+    private String operName;
+
 }

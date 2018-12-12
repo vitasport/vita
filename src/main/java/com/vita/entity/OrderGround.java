@@ -35,4 +35,6 @@ public class OrderGround {
     private LocalTime endTime;
 
     private List<Stock> stocks;
+
+    private String stockIds;
 }

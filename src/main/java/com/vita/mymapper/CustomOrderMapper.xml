@@ -41,9 +41,9 @@
           order_id = #{id}
     </select>
 
-    <select id="stockList" parameterType="com.vita.model.StockVo" resultMap="com.vita.mapper.StockMapper.BaseResultMap">
+    <select id="stockList" parameterType="com.vita.model.StockListVo" resultMap="com.vita.mapper.StockMapper.BaseResultMap">
         SELECT
-          id, ground_id, ground_name, `date`, start_time, end_time, price, status, version
+          id, price, status, ground_name
         FROM
           p_stock
         WHERE
@@ -58,5 +58,35 @@
             AND sport_key = #{sportKey}
         </if>
     </select>
+
+
+    <select id="selectBookOrderInfo" resultType="java.util.Map" parameterType="java.lang.Integer">
+        SELECT
+            user_id userId, nick_name nickName, order_no orderNo
+        FROM
+            t_book_order
+        WHERE
+            id=#{orderId}
+    </select>
+
+    <update id="lockStock" parameterType="com.vita.entity.Stock">
+        UPDATE
+            p_stock
+        SET
+            version=version+1,
+
+            <if test="status != null and status != ''">
+                status=#{status},
+            </if>
+            <if test="price != null and price != ''">
+                price=#{price},
+            </if>
+
+            oper_id=#{operId},
+            oper_name=#{operName}
+
+        WHERE
+            id=#{id} AND version = #{version}
+    </update>
 
 </mapper>

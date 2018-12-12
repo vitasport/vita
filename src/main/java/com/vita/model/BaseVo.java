@@ -3,7 +3,6 @@ package com.vita.model;/**
  */
 
 import lombok.Data;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
 
@@ -30,20 +29,11 @@ import javax.validation.constraints.NotNull;
  * @Description :
  * ---------------------------------
  * @Author : tawift
- * @Date : Create in 2018/12/12 15:27
+ * @Date : Create in 2018/12/12 20:55
  */
 @Data
-public class StockVo {
+public class BaseVo {
 
     @NotNull
     private Integer id;
-
-    private Integer price;
-
-    @NotEmpty
-    private String operName;
-
-    @NotEmpty
-    private String operId;
-
 }

@@ -2,11 +2,9 @@ package com.vita.controller;/**
  * Created by tawift on 2018/12/6.
  */
 
-import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.vita.entity.BookOrder;
-import com.vita.entity.Device;
 import com.vita.model.JSONResult;
 import com.vita.model.OrderListVo;
 import com.vita.model.OrderVo;
@@ -77,6 +75,7 @@ public class OrderController {
     public JSONResult<BookOrder> detail(@Valid OrderVo vo, BindingResult br) {
         return orderService.detail(vo);
     }
+
 
     @RequestMapping(value = "/findSuccessOrderByPage", method = {RequestMethod.POST})
     public JSONResult<PageInfo<BookOrder>> findSuccessOrderByPage(BookOrder order, PageVo pageVo) {

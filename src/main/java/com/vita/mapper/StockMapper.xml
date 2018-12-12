@@ -11,12 +11,17 @@
     <result column="price" jdbcType="INTEGER" property="price" />
     <result column="status" jdbcType="CHAR" property="status" />
     <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="sport_key" jdbcType="CHAR" property="sportKey" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="oper_id" jdbcType="VARCHAR" property="operId" />
+    <result column="oper_name" jdbcType="VARCHAR" property="operName" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, ground_id, ground_name, date, start_time, end_time, price, status, version
+    id, ground_id, ground_name, date, start_time, end_time, price, status, version, sport_key,
+    order_id, oper_id, oper_name
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from p_stock
     where id = #{id,jdbcType=INTEGER}
@@ -26,12 +31,16 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.vita.entity.Stock">
-    insert into p_stock (id, ground_id, ground_name, 
-      date, start_time, end_time, price, 
-      status, version)
-    values (#{id,jdbcType=INTEGER}, #{groundId,jdbcType=INTEGER}, #{groundName,jdbcType=VARCHAR}, 
-      #{date,jdbcType=DATE}, #{startTime,jdbcType=TIME}, #{endTime,jdbcType=TIME}, #{price,jdbcType=INTEGER}, 
-      #{status,jdbcType=CHAR}, #{version,jdbcType=INTEGER})
+    insert into p_stock (id, ground_id, ground_name,
+    date, start_time, end_time, price,
+    status, version, sport_key,
+    order_id, oper_id, oper_name
+    )
+    values (#{id,jdbcType=INTEGER}, #{groundId,jdbcType=INTEGER}, #{groundName,jdbcType=VARCHAR},
+    #{date,jdbcType=DATE}, #{startTime,jdbcType=TIME}, #{endTime,jdbcType=TIME}, #{price,jdbcType=INTEGER},
+    #{status,jdbcType=CHAR}, #{version,jdbcType=INTEGER}, #{sportKey,jdbcType=CHAR},
+    #{orderId,jdbcType=INTEGER}, #{operId,jdbcType=VARCHAR}, #{operName,jdbcType=VARCHAR}
+    )
   </insert>
   <insert id="insertSelective" parameterType="com.vita.entity.Stock">
     insert into p_stock
@@ -63,6 +72,18 @@
       <if test="version != null">
         version,
       </if>
+      <if test="sportKey != null">
+        sport_key,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="operId != null">
+        oper_id,
+      </if>
+      <if test="operName != null">
+        oper_name,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -91,6 +112,18 @@
       </if>
       <if test="version != null">
         #{version,jdbcType=INTEGER},
+      </if>
+      <if test="sportKey != null">
+        #{sportKey,jdbcType=CHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="operId != null">
+        #{operId,jdbcType=VARCHAR},
+      </if>
+      <if test="operName != null">
+        #{operName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -121,6 +154,18 @@
       <if test="version != null">
         version = #{version,jdbcType=INTEGER},
       </if>
+      <if test="sportKey != null">
+        sport_key = #{sportKey,jdbcType=CHAR},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="operId != null">
+        oper_id = #{operId,jdbcType=VARCHAR},
+      </if>
+      <if test="operName != null">
+        oper_name = #{operName,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -133,7 +178,11 @@
       end_time = #{endTime,jdbcType=TIME},
       price = #{price,jdbcType=INTEGER},
       status = #{status,jdbcType=CHAR},
-      version = #{version,jdbcType=INTEGER}
+      version = #{version,jdbcType=INTEGER},
+      sport_key = #{sportKey,jdbcType=CHAR},
+      order_id = #{orderId,jdbcType=INTEGER},
+      oper_id = #{operId,jdbcType=VARCHAR},
+      oper_name = #{operName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

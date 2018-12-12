@@ -16,6 +16,10 @@ public class BookOrder {
 
     private Integer orderAmt;
 
+    private Integer count;
+
+    private Date validityTime;
+
     private Integer duration;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -37,6 +41,8 @@ public class BookOrder {
 
     private String phone;
 
+    private String authPhone;
+
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate createDate;
 
@@ -45,7 +51,15 @@ public class BookOrder {
 
     private String status;
 
+    private String payStatus;
+
+    private Date payFinishTime;
+
     private String payChannel;
+
+    private String stadiumId;
+
+    private Integer productId;
 
     private String productName;
 
@@ -69,6 +83,6 @@ public class BookOrder {
 
     private Integer version;
 
-    private OrderGround ground;
+    private String shortUrl;
 
 }

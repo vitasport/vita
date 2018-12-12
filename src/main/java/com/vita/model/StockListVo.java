@@ -1,11 +1,9 @@
 package com.vita.model;/**
- * Created by tawift on 2018/12/12.
+ * Created by tawift on 2018/12/7.
  */
 
 import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
-
-import javax.validation.constraints.NotNull;
 
 /**
  * code is far away from bug with the animal protecting
@@ -30,20 +28,16 @@ import javax.validation.constraints.NotNull;
  * @Description :
  * ---------------------------------
  * @Author : tawift
- * @Date : Create in 2018/12/12 15:27
+ * @Date : Create in 2018/12/7 13:43
  */
 @Data
-public class StockVo {
+public class StockListVo {
 
-    @NotNull
-    private Integer id;
+    private String groundName;
 
-    private Integer price;
 
-    @NotEmpty
-    private String operName;
+    private String sportKey;
 
     @NotEmpty
-    private String operId;
-
+    private String date;
 }

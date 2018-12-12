@@ -3,9 +3,10 @@ package com.vita.controller;/**
  */
 
 import com.alibaba.fastjson.JSONArray;
-import com.github.pagehelper.PageInfo;
-import com.vita.entity.Stock;
+import com.alibaba.fastjson.JSONObject;
+import com.vita.model.BaseVo;
 import com.vita.model.JSONResult;
+import com.vita.model.StockListVo;
 import com.vita.model.StockVo;
 import com.vita.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -57,7 +57,36 @@ public class StockController {
      * @return
      */
     @RequestMapping("list")
-    public JSONResult<JSONArray> list(@RequestBody @Valid StockVo vo, BindingResult br) {
+    public JSONResult<JSONArray> list(@RequestBody @Valid StockListVo vo, BindingResult br) {
         return stockService.list(vo);
     }
+
+    @RequestMapping("info")
+    public JSONResult<JSONObject> stockInfo(@Valid BaseVo vo, BindingResult br){
+        return stockService.stockInfo(vo);
+    }
+
+    /**
+     * 库存查询
+     *
+     * @param vo
+     * @return
+     */
+    @RequestMapping("lock")
+    public JSONResult<String> lock(@RequestBody @Valid StockVo vo, BindingResult br) {
+        return stockService.lock(vo);
+    }
+
+    /**
+     * 库存修改
+     *
+     * @param vo
+     * @return
+     */
+    @RequestMapping("update")
+    public JSONResult<String> update(@RequestBody @Valid StockVo vo, BindingResult br) {
+        return stockService.update(vo);
+    }
+
+
 }

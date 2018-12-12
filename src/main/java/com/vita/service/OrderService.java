@@ -2,7 +2,6 @@ package com.vita.service;/**
  * Created by tawift on 2018/12/6.
  */
 
-import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.vita.entity.BookOrder;
@@ -53,26 +52,28 @@ public class OrderService {
 
     /**
      * 订单管理列表查询
+     *
      * @param vo
      * @return
      */
     public JSONResult<PageInfo<BookOrder>> list(OrderListVo vo) {
-        PageHelper.startPage(vo.getPage(),vo.getLimit());
+        PageHelper.startPage(vo.getPage(), vo.getLimit());
         List<BookOrder> list = customOrderMapper.orderList(vo);
         return new JSONResult<>(new PageInfo<>(list));
     }
 
     /**
      * 订单详情
+     *
      * @return
      */
-    public JSONResult<BookOrder> detail(OrderVo vo){
+    public JSONResult<BookOrder> detail(OrderVo vo) {
         BookOrder order = bookOrderMapper.selectByPrimaryKey(vo.getOrderId());
         return new JSONResult<>(order);
     }
 
-    public List<BookOrder> findSuccessOrderByPage(BookOrder order)
-    {
+    public List<BookOrder> findSuccessOrderByPage(BookOrder order) {
         return bookOrderMapper.findSuccessOrderByPage(order);
     }
+
 }
