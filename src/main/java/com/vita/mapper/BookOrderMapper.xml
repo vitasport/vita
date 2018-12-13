@@ -40,7 +40,7 @@
     <result column="short_url" jdbcType="VARCHAR" property="shortUrl" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, order_no, order_amt, count, validity_time, duration, order_date, income, m_bath, 
+    id, order_no, order_amt, `count`, validity_time, duration, order_date, income, m_bath,
     w_bath, m_locker, w_locker, user_id, nick_name, phone, auth_phone, create_date, create_time, 
     status, pay_status, pay_finish_time, pay_channel, stadium_id, product_id, product_name, 
     source, type, order_info, income_num, refund_amt, refund_status, out_trade_no, out_pay_id, 
@@ -67,7 +67,7 @@
   </delete>
   <insert id="insert" parameterType="com.vita.entity.BookOrder">
     insert into t_book_order (id, order_no, order_amt, 
-      count, validity_time, duration, 
+      `count`, validity_time, duration,
       order_date, income, m_bath, 
       w_bath, m_locker, w_locker, 
       user_id, nick_name, phone, 
@@ -106,7 +106,7 @@
         order_amt,
       </if>
       <if test="count != null">
-        count,
+        `count`,
       </if>
       <if test="validityTime != null">
         validity_time,
@@ -326,7 +326,7 @@
         order_amt = #{orderAmt,jdbcType=INTEGER},
       </if>
       <if test="count != null">
-        count = #{count,jdbcType=INTEGER},
+        `count` = #{count,jdbcType=INTEGER},
       </if>
       <if test="validityTime != null">
         validity_time = #{validityTime,jdbcType=TIMESTAMP},
@@ -431,7 +431,7 @@
     update t_book_order
     set order_no = #{orderNo,jdbcType=VARCHAR},
       order_amt = #{orderAmt,jdbcType=INTEGER},
-      count = #{count,jdbcType=INTEGER},
+      `count` = #{count,jdbcType=INTEGER},
       validity_time = #{validityTime,jdbcType=TIMESTAMP},
       duration = #{duration,jdbcType=INTEGER},
       order_date = #{orderDate,jdbcType=DATE},
